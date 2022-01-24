@@ -119,7 +119,7 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        {/* <List>
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -128,9 +128,9 @@ export default function PersistentDrawerLeft() {
               <ListItemText primary={text} />
             </ListItem>
           ))}
-        </List>
+        </List> */}
         <Divider />
-        <List>
+        {/* <List>
           {["All mail", "Trash", "Spam"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -139,7 +139,7 @@ export default function PersistentDrawerLeft() {
               <ListItemText primary={text} />
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
       <Main open={open} style={{ height: "92vh" }}>
         <DrawerHeader />
