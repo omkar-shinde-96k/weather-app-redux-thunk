@@ -2,8 +2,7 @@ let Data = [];
 
 const GetDataReducer = (state = [], action) => {
   switch (action.type) {
-    case "GetDataAction": {
-      console.log("lets get data", action.payload);
+    case "GetDataAction": { 
       Data = action.payload;
       return Data;
     }

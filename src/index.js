@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./store/store";
 import { Provider } from "react-redux";
 
-store.subscribe(() => console.log("storestate3", store.getState()));
+// store.subscribe(() => console.log("storestate3", store.getState()));
 
 ReactDOM.render(
   <React.StrictMode>

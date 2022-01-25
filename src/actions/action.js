@@ -1,16 +1,19 @@
 export const featchWeather = (city) => {
   return async (dispatch) => {
     try {
-      var api = `https://api.weatherapi.com/v1/current.json?key=04938d6b73de4f07a5c43913201811&q=${city}`;
-      let data = await fetch(api);
-      var realtimeData = await data.json();
-      dispatch(GetDataAction(realtimeData));
-    } catch (error) {}
+      if (city !== "") {
+        var api = `https://api.weatherapi.com/v1/current.json?key=04938d6b73de4f07a5c43913201811&q=${city}`;
+        let data = await fetch(api);
+        var realtimeData = await data.json();
+        dispatch(GetDataAction(realtimeData));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
 export const GetDataAction = (payload) => {
-  console.log("action tringer");
   return {
     type: "GetDataAction",
     payload,

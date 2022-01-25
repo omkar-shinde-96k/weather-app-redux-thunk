@@ -5,13 +5,48 @@ import { featchWeather } from "../actions/action";
 const Homepage = () => {
   const weather = useSelector((state) => state.GetDataReducer);
   const dispatch = useDispatch();
-  console.log("mystore", weather);
 
-  const [city, setCity] = useState("india");
+  const [city, setCity] = useState("delhi");
 
   useEffect(() => {
     dispatch(featchWeather(city));
   }, [city]);
+
+  useEffect(() => {
+    getCityName();
+  }, []);
+
+  const getCityName = async () => {
+    const options = {
+      enableHighAccuracy: true,
+      maximumAge: 0,
+    };
+
+    let lat = null;
+    let long = null;
+    navigator.geolocation.getCurrentPosition(
+      (values) => {
+        lat = values.coords.latitude;
+        long = values.coords.longitude;
+        console.log(`Latitude : ${values.coords.latitude}`);
+        console.log(`Longitude: ${values.coords.longitude}`);
+        GetCity(lat, long);
+      },
+      (err) => {
+        if (err) throw err;
+      },
+      options
+    );
+  };
+
+  const GetCity = async (lat, long) => {
+    const result = await fetch(
+      `https://us1.locationiq.com/v1/reverse.php?key=pk.622b03971f75f21977c1ed4292e51951&lat=${lat}&lon=${long}&format=json`
+    );
+    const city = await result.json();
+    console.log(city?.address?.city);
+    setCity(city.address.city);
+  };
 
   return (
     <>
