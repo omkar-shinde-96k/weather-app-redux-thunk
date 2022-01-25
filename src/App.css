@@ -15,7 +15,7 @@ body {
 #main {
   display: flex;
   width: 100%;
-  height: 100%;
+  height:83.5vh;
   /* border:1px solid black ; */
 }
 #checkpage {
@@ -141,4 +141,8 @@ body {
 
 ::placeholder {
   color: rgb(0, 0, 0);
+}
+
+::-webkit-scrollbar{
+  width:  0;
 }

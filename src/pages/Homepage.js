@@ -19,7 +19,6 @@ const Homepage = () => {
   const getCityName = async () => {
     const options = {
       enableHighAccuracy: true,
-      maximumAge: 0,
     };
 
     let lat = null;
@@ -28,8 +27,9 @@ const Homepage = () => {
       (values) => {
         lat = values.coords.latitude;
         long = values.coords.longitude;
-        console.log(`Latitude : ${values.coords.latitude}`);
-        console.log(`Longitude: ${values.coords.longitude}`);
+        console.log(
+          `Latitude : ${values.coords.latitude} , Longitude: ${values.coords.longitude}`
+        );
         GetCity(lat, long);
       },
       (err) => {
@@ -62,29 +62,38 @@ const Homepage = () => {
               }}
             />
           </div>
+          {!weather?.error?.message ? (
+            <div id="box">
+              <div className="img">
+                <img align="center" src={weather?.current?.condition?.icon} />
+              </div>
 
-          <div id="box">
-            <div className="img">
-              <img align="center" src={weather?.current?.condition?.icon} />
+              <div id="time">
+                {" "}
+                Date And Time: {weather?.location?.localtime}{" "}
+              </div>
+
+              <div id="location">
+                Location: {weather?.location?.name} ,{" "}
+                {weather?.location?.region},{weather?.location?.country}
+              </div>
+
+              <div id="temp">
+                Tempressure: {weather?.current?.temp_c} &deg; C
+              </div>
+
+              <div id="wind"> Speed : {weather?.current?.wind_kph} </div>
+
+              <div id="direction">
+                {" "}
+                Direction: {weather?.current?.wind_dir}{" "}
+              </div>
             </div>
-
-            <div id="time"> Date And Time: {weather?.location?.localtime} </div>
-
-            <div id="location">
-              Location: {weather?.location?.name} , {weather?.location?.region},
-              {weather?.location?.country}
+          ) : (
+            <div id="errorshow" className="errorshowClass">
+              {weather?.error?.message}
             </div>
-
-            <div id="temp">Tempressure: {weather?.current?.temp_c} &deg; C</div>
-
-            <div id="wind"> Speed : {weather?.current?.wind_kph} </div>
-
-            <div id="direction"> Direction: {weather?.current?.wind_dir} </div>
-          </div>
-
-          <div id="errorshow" className="errorshowClass">
-            {weather?.error?.message}
-          </div>
+          )}
 
           <br />
         </div>
